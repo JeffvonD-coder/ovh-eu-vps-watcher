@@ -1,0 +1,19 @@
+{
+  "planCode": "vps-2027-model4",
+  "ovhSubsidiary": "NL",
+  "configuratorUrl": "https://www.ovhcloud.com/nl/vps/configurator/?planCode=vps-2027-model4&brick=VPS%2BModel%2B4&pricing=upfront12&processor=%20&vcore=8__vCore&storage=200__SSD__NVMe",
+  "euDatacenters": {
+    "eu-west-gra": "Gravelines, France",
+    "eu-west-rbx": "Roubaix, France",
+    "eu-west-sbg": "Strasbourg, France",
+    "eu-west-lim": "Limburg, Germany",
+    "eu-south-mil": "Milan, Italy",
+    "eu-central-waw": "Warsaw, Poland"
+  },
+  "alsoWatchNonEu": {
+    "eu-west-eri": "Erith, United Kingdom (NOT in the EU - adequacy decision only)"
+  },
+  "notifyOnNonEu": false,
+  "osFilter": "linux",
+  "reNotifyAfterHours": 12
+}

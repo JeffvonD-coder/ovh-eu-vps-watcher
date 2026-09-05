@@ -1,0 +1,45 @@
+name: OVH EU VPS stock check
+
+on:
+  schedule:
+    # Every 5 minutes - the shortest interval GitHub accepts. Scheduled runs are
+    # best-effort and can be delayed under load, so treat this as a backstop to
+    # the 30-second local watcher rather than a replacement for it.
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Never let two runs race on the state.json commit.
+concurrency:
+  group: ovh-stock-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check OVH EU availability
+        shell: pwsh
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_EMAIL: ${{ secrets.NTFY_EMAIL }}
+        run: ./check.ps1
+
+      - name: Persist state if it changed
+        run: |
+          if [ -z "$(git status --porcelain state.json)" ]; then
+            echo "State unchanged - nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "state: EU availability changed [skip ci]"
+          # A concurrent run could have pushed first; rebase and retry once.
+          git push || { git pull --rebase --autostash && git push; }
