@@ -15,5 +15,5 @@
   },
   "notifyOnNonEu": false,
   "osFilter": "linux",
-  "reNotifyAfterHours": 12
+  "reNotifyAfterHours": 2
 }
