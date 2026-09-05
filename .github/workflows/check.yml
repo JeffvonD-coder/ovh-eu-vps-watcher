@@ -2,10 +2,14 @@ name: OVH EU VPS stock check
 
 on:
   schedule:
-    # Every 5 minutes - the shortest interval GitHub accepts. Scheduled runs are
-    # best-effort and can be delayed under load, so treat this as a backstop to
-    # the 30-second local watcher rather than a replacement for it.
-    - cron: '*/5 * * * *'
+    # Every 5 minutes, deliberately offset off the :00/:05 boundaries. GitHub
+    # queues every runner in the world on those marks, and high-frequency crons
+    # are the first thing dropped when Actions is congested; an odd offset gets
+    # noticeably better delivery.
+    #
+    # Scheduled runs are best-effort regardless: expect delays, and treat this
+    # as a backstop to the 30-second local watcher, not a replacement for it.
+    - cron: '3-58/5 * * * *'
   workflow_dispatch:
 
 permissions:
