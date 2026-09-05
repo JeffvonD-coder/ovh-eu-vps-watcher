@@ -26,7 +26,11 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v4
+      # v4 runs on Node 20, which GitHub has deprecated. v5+ is the Node 24 line.
+      # The "Persist state" step below relies on checkout leaving usable push
+      # credentials behind; v6 changed where those are stored, so if that step
+      # ever starts failing to push, suspect this bump first.
+      - uses: actions/checkout@v7
 
       - name: Check OVH EU availability
         shell: pwsh
