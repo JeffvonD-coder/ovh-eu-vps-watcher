@@ -1,8 +1,9 @@
 {
   "lastAvailable": [
+    "eu-south-mil",
     "eu-west-rbx"
   ],
-  "lastNotified": "2026-09-09T04:53:35.9454368Z",
-  "lastSummary": "eu-central-waw=out-of-stock eu-south-mil=out-of-stock eu-west-gra=out-of-stock eu-west-lim=out-of-stock eu-west-rbx=available eu-west-sbg=out-of-stock",
+  "lastNotified": "2026-09-09T09:15:14.0487591Z",
+  "lastSummary": "eu-central-waw=out-of-stock eu-south-mil=available eu-west-gra=out-of-stock eu-west-lim=out-of-stock eu-west-rbx=available eu-west-sbg=out-of-stock",
   "keepalive": "2026-09"
 }
